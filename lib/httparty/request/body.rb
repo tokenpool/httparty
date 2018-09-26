@@ -38,6 +38,7 @@ module HTTParty
           memo += "\r\n"
           memo += "Content-Type: application/octet-stream\r\n" if file?(value)
           memo += "\r\n"
+          value = File.new(value.path) if file?(value) and value.read.empty?
           memo += file?(value) ? value.read : value.to_s
           memo += "\r\n"
         end
